@@ -42,7 +42,7 @@ Choose:
 
 `9 Advanced Options`
 >`A2 Hostname`
->*change it to "DashboardPI"*
+>*change it to "EnvironmentClock"*
 >
 >`A4 SSH`
 >*Enable SSH Server*
@@ -90,7 +90,7 @@ Add the following lines to have your raspberrypi automatically connect to your h
 
 >$ `sudo apt-get update`
 >
->$ `sudo apt-get install vim git python-smbus i2c-tools python-imaging python-smbus build-essential python-dev rpi.gpio python3 python3-pip`
+>$ `sudo apt-get install vim git python-smbus i2c-tools python-imaging python-smbus build-essential python-dev rpi.gpio python3 python3-pip libi2c-dev`
 
 **Setup the simple directory `l` command [optional]**
 
@@ -109,3 +109,19 @@ Add the following lines to have your raspberrypi automatically connect to your h
 >uncomment the following line:
 >
 >_syntax on_
+
+
+### Clone Clock repository
+
+>`cd ~`
+>`git clone https://github.com/khinds10/EnvironmentClock.git`
+
+
+### Re-Compile Digole Driver (if you need changes)
+>display
+>gcc digole.c 
+>mv a.out ../digole
+>chmod +x ../digole
+
+
+http://www.digole.com/tools/PicturetoC_Hex_converter.php
