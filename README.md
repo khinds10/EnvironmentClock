@@ -110,7 +110,6 @@ Add the following lines to have your raspberrypi automatically connect to your h
 >
 >_syntax on_
 
-
 ### Clone Clock repository
 
 >`cd ~`
@@ -118,10 +117,10 @@ Add the following lines to have your raspberrypi automatically connect to your h
 
 
 ### Re-Compile Digole Driver (if you need changes)
->display
+>cd display/build
 >gcc digole.c 
->mv a.out ../digole
->chmod +x ../digole
+>mv a.out mv a.out ../../digole
+>chmod +x ../../digole
 
 
 http://www.digole.com/tools/PicturetoC_Hex_converter.php

@@ -24,6 +24,16 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>
+#include "clear-day.h"
+#include "clear-night.h"
+#include "cloudy.h"
+#include "fog.h"
+#include "partly-cloudy-day.h"
+#include "partly-cloudy-night.h"
+#include "rain.h"
+#include "sleet.h"
+#include "snow.h"
+#include "wind.h"
 
 #define _TEXT_ 0
 #define _GRAPH_ 1
@@ -286,6 +296,17 @@ void drawBitmap(uint8_t x, uint8_t y, uint8_t w, uint8_t h, const uint8_t *bitma
         writebyte(*(bitmap + j));
     }
 }
+void drawBitmap256(uint8_t x, uint8_t y, uint8_t w, uint8_t h, const uint8_t *bitmap,uint8_t c ) {
+	int j;
+    writecmd("EDIM1");
+    writebyte(x);
+    writebyte(y);
+    writebyte(w);
+    writebyte(h);
+    for ( j = 0; j < h * w; j++) {
+        writebyte(*(bitmap + j));
+    }
+}
 void drawBitmapc(uint8_t x, uint8_t y, uint8_t w, uint8_t h, const uint8_t *bitmap,uint8_t c ) {
     uint8_t i = 0;
 	int j;
@@ -507,7 +528,26 @@ int main (int argc, char* argv[]) {
         printnxyf_abs((uint8_t)atoi(argv[2]), (uint8_t)atoi(argv[3]),(uint8_t)atoi(argv[4]), (uint8_t)atoi(argv[5]));
     } else if (strcmp(digoleCommand, "LCDdrawbitmap") == 0) {
         //LCDdrawbitmap((uint8_t)atoi(argv[2]), (uint8_t)atoi(argv[3]), (uint8_t)atoi(argv[4]), (uint8_t)atoi(argv[5]), (uint8_t)atoi(argv[6]),(uint8_t)atoi(argv[7]),(uint8_t)argv[8]);
+    } else if (strcmp(digoleCommand, "clear-night") == 0) {
+        drawBitmap256(10, 10, 128, 128, &clearNight,0);
+    } else if (strcmp(digoleCommand, "cloudy") == 0) {
+        drawBitmap256(10, 10, 128, 128, &cloudy,0);
+    } else if (strcmp(digoleCommand, "fog") == 0) {
+        drawBitmap256(10, 10, 128, 128, &fog,0);
+    } else if (strcmp(digoleCommand, "partly-cloudy-day") == 0) {
+        drawBitmap256(10, 10, 128, 128, &partlyCloudyDay,0);
+    } else if (strcmp(digoleCommand, "partly-cloudy-night") == 0) {
+        drawBitmap256(10, 10, 128, 128, &partlyCloudyNight,0);
+    } else if (strcmp(digoleCommand, "rain") == 0) {
+        drawBitmap256(10, 10, 128, 128, &rain,0);
+    } else if (strcmp(digoleCommand, "sleet") == 0) {
+        drawBitmap256(10, 10, 128, 128, &sleet,0);
+    } else if (strcmp(digoleCommand, "snow") == 0) {
+        drawBitmap256(10, 10, 128, 128, &snow,0);
+    } else if (strcmp(digoleCommand, "wind") == 0) {
+        drawBitmap256(10, 10, 128, 128, &wind,0);
     }
+
     printf("\n");
 	return 0;
 }
