@@ -528,6 +528,8 @@ int main (int argc, char* argv[]) {
         printnxyf_abs((uint8_t)atoi(argv[2]), (uint8_t)atoi(argv[3]),(uint8_t)atoi(argv[4]), (uint8_t)atoi(argv[5]));
     } else if (strcmp(digoleCommand, "LCDdrawbitmap") == 0) {
         //LCDdrawbitmap((uint8_t)atoi(argv[2]), (uint8_t)atoi(argv[3]), (uint8_t)atoi(argv[4]), (uint8_t)atoi(argv[5]), (uint8_t)atoi(argv[6]),(uint8_t)atoi(argv[7]),(uint8_t)argv[8]);
+    } else if (strcmp(digoleCommand, "clear-day") == 0) {
+        drawBitmap256(10, 10, 128, 128, &clearDay,0);
     } else if (strcmp(digoleCommand, "clear-night") == 0) {
         drawBitmap256(10, 10, 128, 128, &clearNight,0);
     } else if (strcmp(digoleCommand, "cloudy") == 0) {
