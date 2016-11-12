@@ -89,8 +89,15 @@ Add the following lines to have your raspberrypi automatically connect to your h
 **Start Installing required packages**
 
 >$ `sudo apt-get update`
+>$ `sudo apt-get upgrade`
 >
 >$ `sudo apt-get install vim git python-smbus i2c-tools python-imaging python-smbus build-essential python-dev rpi.gpio python3 python3-pip libi2c-dev`
+
+**Update local timezone settings**
+
+>$ `sudo dpkg-reconfigure tzdata`
+
+`select your timezone using the interface`
 
 **Setup the simple directory `l` command [optional]**
 
@@ -104,7 +111,7 @@ Add the following lines to have your raspberrypi automatically connect to your h
 
 **Fix VIM default syntax highlighting [optional]**
 
->`sudo vi  /etc/vim/vimrc`
+>`sudo vi /etc/vim/vimrc`
 >
 >uncomment the following line:
 >
@@ -115,7 +122,6 @@ Add the following lines to have your raspberrypi automatically connect to your h
 >`cd ~`
 >`git clone https://github.com/khinds10/EnvironmentClock.git`
 
-
 ### Re-Compile Digole Driver (if you need changes)
 >cd display/build
 >gcc digole.c 
@@ -123,4 +129,17 @@ Add the following lines to have your raspberrypi automatically connect to your h
 >chmod +x ../../digole
 
 
+
 http://www.digole.com/tools/PicturetoC_Hex_converter.php
+
+
+
+Wiring the 1.2" display
+
+    D -> SDA
+    C -> SCL
+    + -> 5v
+    - -> GND
+    IO -> jumper across to + (5v)
+
+
