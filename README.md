@@ -147,3 +147,40 @@ Add the following lines to have your raspberrypi automatically connect to your h
 
 http://www.digole.com/tools/PicturetoC_Hex_converter.php [optional]
 
+
+####DHT11 Install
+
+`cd ~`
+
+`git clone https://github.com/adafruit/Adafruit_Python_DHT.git`
+
+`cd Adafruit_Python_DHT/`
+
+`sudo python setup.py install`
+
+`sudo python ez_setup.py`
+
+`cd examples/`
+
+`vi simpletest.py`
+
+Change the following line:
+
+> sensor = Adafruit_DHT.DHT11
+
+Comment the line out
+
+> pin = 'P8_11'
+
+Uncomment the line and change the pin number to 16
+
+> pin = 16
+
+Run the test
+
+`python simpletest.py`
+
+> You should see a metric reading of Temp and Humidity displayed on the command line.
+
+
+
