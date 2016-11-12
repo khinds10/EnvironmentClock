@@ -9,6 +9,7 @@ from Adafruit_LED_Backpack import SevenSegment
 # Clock Example
 # ===========================================================================
 segment = SevenSegment.SevenSegment(address=0x70)
+segment.set_brightness(1)
 
 # Initialize the display. Must be called once before using the display.
 segment.begin()
