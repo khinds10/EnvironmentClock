@@ -123,23 +123,27 @@ Add the following lines to have your raspberrypi automatically connect to your h
 >`git clone https://github.com/khinds10/EnvironmentClock.git`
 
 ### Re-Compile Digole Driver (if you need changes)
->cd display/build
->gcc digole.c 
->mv a.out mv a.out ../../digole
->chmod +x ../../digole
 
+>`cd display/build`
+>`gcc digole.c`
+>`mv a.out ../../digole`
+>`chmod +x ../../digole`
 
+**Install i2c Backpack Python Drivers**
 
-http://www.digole.com/tools/PicturetoC_Hex_converter.php
+>$ `cd ~`
+>$ `git clone https://github.com/adafruit/Adafruit_Python_LED_Backpack`
+>$ `cd Adafruit_Python_LED_Backpack/`
+>$ `sudo python setup.py install`
 
-
-
-Wiring the 1.2" display
+**Wiring the 1.2" display**
 
     D -> SDA
     C -> SCL
     + -> 5v
     - -> GND
-    IO -> jumper across to + (5v)
+    IO -> 5v
 
+
+http://www.digole.com/tools/PicturetoC_Hex_converter.php [optional]
 
