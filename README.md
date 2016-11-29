@@ -89,6 +89,7 @@ Add the following lines to have your raspberrypi automatically connect to your h
 **Start Installing required packages**
 
 >$ `sudo apt-get update`
+>
 >$ `sudo apt-get upgrade`
 >
 >$ `sudo apt-get install vim git python-smbus i2c-tools python-imaging python-smbus build-essential python-dev rpi.gpio python3 python3-pip libi2c-dev`
@@ -97,21 +98,21 @@ Add the following lines to have your raspberrypi automatically connect to your h
 
 >$ `sudo dpkg-reconfigure tzdata`
 
-`select your timezone using the interface`
+> select your timezone using the interface
 
 **Setup the simple directory `l` command [optional]**
 
->`vi ~/.bashrc`
+>$ `vi ~/.bashrc`
 >
 >*add the following line:*
 >
->`alias l='ls -lh'`
+>$ `alias l='ls -lh'`
 >
->`source ~/.bashrc`
+>$ `source ~/.bashrc`
 
 **Fix VIM default syntax highlighting [optional]**
 
->`sudo vi /etc/vim/vimrc`
+>$ `sudo vi /etc/vim/vimrc`
 >
 >uncomment the following line:
 >
@@ -119,61 +120,46 @@ Add the following lines to have your raspberrypi automatically connect to your h
 
 ### Clone Clock repository
 
->`cd ~`
->`git clone https://github.com/khinds10/EnvironmentClock.git`
+>$ `cd ~`
+>
+>$ `git clone https://github.com/khinds10/EnvironmentClock.git`
 
-### Re-Compile Digole Driver (if you need changes)
-
->`cd display/build`
->`gcc digole.c`
->`mv a.out ../../digole`
->`chmod +x ../../digole`
 
 **Install i2c Backpack Python Drivers**
 
 >$ `cd ~`
+>
 >$ `git clone https://github.com/adafruit/Adafruit_Python_LED_Backpack`
+>
 >$ `cd Adafruit_Python_LED_Backpack/`
+>
 >$ `sudo python setup.py install`
-
-**Wiring the 1.2" display**
-
-    D -> SDA
-    C -> SCL
-    + -> 5v
-    - -> GND
-    IO -> 5v
-
-
-http://www.digole.com/tools/PicturetoC_Hex_converter.php [optional]
-
+>
 
 ####DHT11 Install
 
-`cd ~`
-
-`git clone https://github.com/adafruit/Adafruit_Python_DHT.git`
-
-`cd Adafruit_Python_DHT/`
-
-`sudo python setup.py install`
-
-`sudo python ez_setup.py`
-
-`cd examples/`
-
-`vi simpletest.py`
+>$ `cd ~`
+>
+>$ `git clone https://github.com/adafruit/Adafruit_Python_DHT.git`
+>
+>$ `cd Adafruit_Python_DHT/`
+>
+>$ `sudo python setup.py install`
+>
+>$ `sudo python ez_setup.py`
+>
+>$ `cd examples/`
+>
+>$ `vi simpletest.py`
+>
 
 Change the following line:
-
 > sensor = Adafruit_DHT.DHT11
 
 Comment the line out
-
 > pin = 'P8_11'
 
 Uncomment the line and change the pin number to 16
-
 > pin = 16
 
 Run the test
@@ -181,6 +167,4 @@ Run the test
 `python simpletest.py`
 
 > You should see a metric reading of Temp and Humidity displayed on the command line.
-
-
 
