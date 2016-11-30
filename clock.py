@@ -42,4 +42,3 @@ while(True):
 
   # Wait a quarter second (less than 1 second to prevent colon blinking)
   time.sleep(0.25)
-

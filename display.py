@@ -3,7 +3,7 @@
 # License: GPL 2.0
 import datetime as dt
 import time, json, string, cgi, subprocess, json
-import includes.settings as settings
+import settings as settings
 import Adafruit_DHT
 
 # Raspberry Pi with DHT sensor - connected to GPIO16 / Pin 36
