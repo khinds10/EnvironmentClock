@@ -2,6 +2,8 @@
 
 ####Flashing RaspberriPi Hard Disk / Install Required Software (Using Ubuntu Linux)
 
+![EnvironmentClock](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/front.jpg "EnvironmentClock")
+
 Download "RASPBIAN JESSIE LITE"
 https://www.raspberrypi.org/downloads/raspbian/
 
@@ -118,7 +120,7 @@ Add the following lines to have your raspberrypi automatically connect to your h
 >
 >_syntax on_
 
-### Clone Clock repository
+**Clone Clock repository**
 
 >$ `cd ~`
 >
@@ -136,7 +138,7 @@ Add the following lines to have your raspberrypi automatically connect to your h
 >$ `sudo python setup.py install`
 >
 
-####DHT11 Install
+**DHT11 Install**
 
 >$ `cd ~`
 >
@@ -168,24 +170,54 @@ Run the test
 
 > You should see a metric reading of Temp and Humidity displayed on the command line.
 
-**Build and wire the device**
+##Build and wire the device
 
 Using a 3D printer print the enclosure files included in the 'enclosure/' folder.
 .x3g files are MakerBot compatible.  You can also use the .stl and .blend (Blender Program) files to edit and create your own improvements to the design.
 
+**1) Using 4 screws drill and attach the front panel (with the 2 holes) to the 4 sided body.  Then fit the displays in each of the holes.**
 
+![Fit Displays](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/fit-displays.jpg "Fit Displays")
 
+**2) Attach the 7 segment and Digole Display using hot glue gun to hold them in place.**
 
+![Hot Glue Displays](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/attach-displays.jpg "Hot Glue Displays")
 
+**3) Prepare the wires for connection. I use standard jumping wires and a wire cutter to strip the wire bare in the middle of the wires so I can have a bunch connected together glued with a hot glue gun.  (In the image below is my grouped together 5V / GND / SCA / and SCL wires.)**
 
+![Grouped Wires](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/wires.jpg "Grouped Wires")
 
+**4) Begin wiring the unit using the wiring diagram below as a guide.**
 
+**The 7 Segment display**
+    D -> SDA
+    C -> SCL
+    + -> 5v
+    - -> GND
+    IO -> 5v
+    
+**Digole Display**
+    GND -> GND
+    DATA -> SDA
+    CLK -> SCL
+    VCC -> 3V
+    
+**DHT11 Humidistat**
+    VCC -> 5V
+    GND -> GND
+    DATA -> GPIO 16 / PIN 36
+    
+![Wiring Diagram](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/wiringdiagram.png "Wiring Diagram")
 
+![Wiring Displays](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/wiring.jpg "Wiring Displays")
 
+![Attach Wired Displays](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/attach.jpg "Attach Wired Displays")
 
+**5) Glue the humidistat to the back panel, and run a USB cable through the other back panel hole to power the unit.  Attach the back with only 2 screws in case you need to disassemble for repair.**
 
+![Attach Back Panel](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/back.jpg "Attach Back Panel")
 
-**Creating your own images to render on the display (optional)**
+##Creating your own images to render on the display (optional)
 
 Upload your own 128x128 file to the following URL:
 http://www.digole.com/tools/PicturetoC_Hex_converter.php and obtain the hex output.
