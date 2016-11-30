@@ -190,22 +190,22 @@ Using a 3D printer print the enclosure files included in the 'enclosure/' folder
 **4) Begin wiring the unit using the wiring diagram below as a guide.**
 
 **The 7 Segment display**
-    D -> SDA
-    C -> SCL
-    + -> 5v
-    - -> GND
-    IO -> 5v
+> D -> SDA
+> C -> SCL
+> + -> 5v
+> GND -> GND
+> IO -> 5v
     
 **Digole Display**
-    GND -> GND
-    DATA -> SDA
-    CLK -> SCL
-    VCC -> 3V
+> GND -> GND
+> DATA -> SDA
+> CLK -> SCL
+> VCC -> 3V
     
 **DHT11 Humidistat**
-    VCC -> 5V
-    GND -> GND
-    DATA -> GPIO 16 / PIN 36
+> VCC -> 5V
+> GND -> GND
+> DATA -> GPIO 16 / PIN 36
     
 ![Wiring Diagram](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/wiringdiagram.png "Wiring Diagram")
 
@@ -217,10 +217,33 @@ Using a 3D printer print the enclosure files included in the 'enclosure/' folder
 
 ![Attach Back Panel](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/back.jpg "Attach Back Panel")
 
-##Creating your own images to render on the display (optional)
+
+##Setup Startup Scripts
+
+>$ `crontab -e`
+
+Add the following lines:
+
+`@reboot nohup python /home/pi/EnvironmentClock/clock.py >/dev/null 2>&1`
+
+`@reboot nohup python /home/pi/EnvironmentClock/display.py >/dev/null 2>&1`
+
+Verify the display starts working on reboot
+
+>$ `sudo reboot`
+
+
+##OPTIONAL: Creating your own weather images to render on the display
 
 Upload your own 128x128 file to the following URL:
-http://www.digole.com/tools/PicturetoC_Hex_converter.php and obtain the hex output.
+
+http://www.digole.com/tools/PicturetoC_Hex_converter.php 
+
+Choose your image file to upload, add what size you want it to be on the screen (Width/Height)
+
+Select "256 Color for Color OLED/LCD(1 byte/pixel)" in the "Used for" dropdown
+
+Obtain the hex output.
 
 Add the hex output to a display/build/ header (.h) file, use the other ones as guides for syntax.
 
@@ -246,5 +269,3 @@ Now rebuild (ignore the errors) below to have your new image render with the fol
 >$ `mv a.out ../../digole`
 
 >$ `chmod +x ../../digole`
-
-
