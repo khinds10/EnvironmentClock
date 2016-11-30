@@ -168,3 +168,51 @@ Run the test
 
 > You should see a metric reading of Temp and Humidity displayed on the command line.
 
+**Build and wire the device**
+
+Using a 3D printer print the enclosure files included in the 'enclosure/' folder.
+.x3g files are MakerBot compatible.  You can also use the .stl and .blend (Blender Program) files to edit and create your own improvements to the design.
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Creating your own images to render on the display (optional)**
+
+Upload your own 128x128 file to the following URL:
+http://www.digole.com/tools/PicturetoC_Hex_converter.php and obtain the hex output.
+
+Add the hex output to a display/build/ header (.h) file, use the other ones as guides for syntax.
+
+Include the new file in the digole.c file 
+`#include "myimage.h`
+
+Include a new command line hook to your image file in the.
+_Note: the command below is saying draw your image at position 10 pixels over 10  pixels down. You can change it to different X,Y coordinates, you can also change the values 128,128 to whatever size your new image actually is._
+
+`} else if (strcmp(digoleCommand, "myimage") == 0) {`
+    `drawBitmap256(10, 10, 128, 128, &myimageVariableHere,0);  // myimageVariableHere is defined in your (.h) file`
+`}`
+
+Now rebuild (ignore the errors) below to have your new image render with the following command.
+>$ `./digole myimage`
+
+**Re-Building [Included] Digole Display Driver (optional)**
+
+>$ `cd display/build`
+
+>$ `gcc digole.c`
+
+>$ `mv a.out ../../digole`
+
+>$ `chmod +x ../../digole`
+
+
