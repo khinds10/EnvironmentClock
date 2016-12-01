@@ -170,7 +170,28 @@ Run the test
 
 > You should see a metric reading of Temp and Humidity displayed on the command line.
 
+##Supplies Needed
+
+**1.2 inch LED Display**
+![1.2 inch LED Display](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/7segment.jpg "1.2 inch LED Display")
+
+**DHT11 Humidistat**
+![DHT11 Humidistat](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/dht11.jpg "DHT11 Humidistat")
+
+**2.6" Digole Display**
+![Digole Display](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/display.png "Digole Display")
+
+**RaspberriPi Zero (or Regular RaspberriPi should work)**
+![Pi Zero](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/pizero.jpg "Pi Zero")
+
 ##Build and wire the device
+
+**Prepare the Digole Display for i2C**
+
+On the back of the Digole Display, solder the jumper to assign the display to use the i2c protocol
+![i2c Jumper Digole](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/display-back.png "i2c Jumper Digole")
+
+**Print the Project Enclosure**
 
 Using a 3D printer print the enclosure files included in the 'enclosure/' folder.
 .x3g files are MakerBot compatible.  You can also use the .stl and .blend (Blender Program) files to edit and create your own improvements to the design.
@@ -190,22 +211,35 @@ Using a 3D printer print the enclosure files included in the 'enclosure/' folder
 **4) Begin wiring the unit using the wiring diagram below as a guide.**
 
 **The 7 Segment display**
+
 > D -> SDA
+>
 > C -> SCL
-> + -> 5v
+>
+> \+ -> 5v
+>
 > GND -> GND
+>
 > IO -> 5v
     
 **Digole Display**
+
 > GND -> GND
+>
 > DATA -> SDA
+>
 > CLK -> SCL
+>
 > VCC -> 3V
     
 **DHT11 Humidistat**
+
 > VCC -> 5V
+>
 > GND -> GND
+>
 > DATA -> GPIO 16 / PIN 36
+>
     
 ![Wiring Diagram](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/wiringdiagram.png "Wiring Diagram")
 
@@ -260,7 +294,7 @@ _Note: the command below is saying draw your image at position 10 pixels over 10
 Now rebuild (ignore the errors) below to have your new image render with the following command.
 >$ `./digole myimage`
 
-**Re-Building [Included] Digole Display Driver (optional)**
+**Re-Building [Included] Digole Display Driver for your optional changes**
 
 >$ `cd display/build`
 
