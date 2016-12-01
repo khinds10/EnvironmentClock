@@ -173,42 +173,46 @@ Run the test
 ##Supplies Needed
 
 **1.2 inch LED Display**
+
 ![1.2 inch LED Display](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/7segment.jpg "1.2 inch LED Display")
 
 **DHT11 Humidistat**
+
 ![DHT11 Humidistat](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/dht11.jpg "DHT11 Humidistat")
 
 **2.6" Digole Display**
+
 ![Digole Display](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/display.png "Digole Display")
 
 **RaspberriPi Zero (or Regular RaspberriPi should work)**
+
 ![Pi Zero](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/pizero.jpg "Pi Zero")
 
 ##Build and wire the device
 
-**Prepare the Digole Display for i2C**
+**1) Prepare the Digole Display for i2C**
 
 On the back of the Digole Display, solder the jumper to assign the display to use the i2c protocol
 ![i2c Jumper Digole](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/display-back.png "i2c Jumper Digole")
 
-**Print the Project Enclosure**
+**2) Print the Project Enclosure**
 
 Using a 3D printer print the enclosure files included in the 'enclosure/' folder.
 .x3g files are MakerBot compatible.  You can also use the .stl and .blend (Blender Program) files to edit and create your own improvements to the design.
 
-**1) Using 4 screws drill and attach the front panel (with the 2 holes) to the 4 sided body.  Then fit the displays in each of the holes.**
+**3) Using 4 screws drill and attach the front panel (with the 2 holes) to the 4 sided body.  Then fit the displays in each of the holes.**
 
 ![Fit Displays](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/fit-displays.jpg "Fit Displays")
 
-**2) Attach the 7 segment and Digole Display using hot glue gun to hold them in place.**
+**4) Attach the 7 segment and Digole Display using hot glue gun to hold them in place.**
 
 ![Hot Glue Displays](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/attach-displays.jpg "Hot Glue Displays")
 
-**3) Prepare the wires for connection. I use standard jumping wires and a wire cutter to strip the wire bare in the middle of the wires so I can have a bunch connected together glued with a hot glue gun.  (In the image below is my grouped together 5V / GND / SCA / and SCL wires.)**
+**5) Prepare the wires for connection. I use standard jumping wires and a wire cutter to strip the wire bare in the middle of the wires so I can have a bunch connected together glued with a hot glue gun.  (In the image below is my grouped together 5V / GND / SCA / and SCL wires.)**
 
 ![Grouped Wires](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/wires.jpg "Grouped Wires")
 
-**4) Begin wiring the unit using the wiring diagram below as a guide.**
+**6) Begin wiring the unit using the wiring diagram below as a guide.**
 
 **The 7 Segment display**
 
@@ -247,7 +251,7 @@ Using a 3D printer print the enclosure files included in the 'enclosure/' folder
 
 ![Attach Wired Displays](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/attach.jpg "Attach Wired Displays")
 
-**5) Glue the humidistat to the back panel, and run a USB cable through the other back panel hole to power the unit.  Attach the back with only 2 screws in case you need to disassemble for repair.**
+**7) Glue the humidistat to the back panel, and run a USB cable through the other back panel hole to power the unit.  Attach the back with only 2 screws in case you need to disassemble for repair.**
 
 ![Attach Back Panel](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/back.jpg "Attach Back Panel")
 
