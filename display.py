@@ -34,42 +34,53 @@ while True:
         weatherInfo = json.loads(subprocess.check_output(['curl', settings.weatherAPIURL + settings.weatherAPIKey + '/' + str(settings.latitude) + ',' + str(settings.longitude) + '?lang=en']))
         currentConditions = weatherInfo['currently']
         icon = str(currentConditions['icon'])
-        summary = str(currentConditions['summary'])
         apparentTemperature = str(int(currentConditions['apparentTemperature']))
         humidity = str(int(currentConditions['humidity'] * 100))
         windSpeed = str(int(currentConditions['windSpeed']))
         cloudCover = str(int(currentConditions['cloudCover'] * 100))
         precipProbability = str(int(currentConditions['precipProbability'] * 100))
 
+        # minutely conditions, limit the characters to 30 in the summary
+        minutelyConditions = weatherInfo['minutely']
+        summary = str(minutelyConditions['summary'])
+        summary = (summary[:27] + '...') if len(summary) > 29 else summary
+
         # conditions for the day
         dailyConditions = weatherInfo['daily']
         dailyConditions = dailyConditions['data'][0]
         apparentTemperatureMin = str(int(dailyConditions['apparentTemperatureMin']))
         apparentTemperatureMax = str(int(dailyConditions['apparentTemperatureMax']))
-
+        
         # clear and setup display to show basic info
         subprocess.call(["./digole", "clear"])
-        subprocess.call(["./digole", "setColor", "255"])
         subprocess.call(["./digole", "setRot90"])
         subprocess.call(["./digole", icon])
+        subprocess.call(["./digole", "setFont", "18"])
+        subprocess.call(["./digole", "setColor", "255"])
+        subprocess.call(["./digole", "printxy_abs", "10", "178", summary])
         subprocess.call(["./digole", "setFont", "51"])
-        subprocess.call(["./digole", "printxy_abs", "10", "170", summary])
         subprocess.call(["./digole", "printxy_abs", "150", "40", date.strftime('%a, %b %d')])
         
         # print the min daily temp in the evening and night, print the day max temp in the morning and daytime
         if dt.datetime.now().hour > 16 or dt.datetime.now().hour < 6:
+            subprocess.call(["./digole", "setColor", "223"])
             subprocess.call(["./digole", "printxy_abs", "150", "130", "LOW\n" + apparentTemperatureMin + '*F'])
         else:
+            subprocess.call(["./digole", "setColor", "250"])
             subprocess.call(["./digole", "printxy_abs", "150", "130", "HIGH\n" + apparentTemperatureMax + '*F'])
         
         # show indoor / outdoor temp
         subprocess.call(["./digole", "setFont", "120"])
+        
+        subprocess.call(["./digole", "setColor", "255"])
         subprocess.call(["./digole", "printxy_abs", "150", "85", apparentTemperature + "*F [" + humidity + "%]"])
-        subprocess.call(["./digole", "printxy_abs", "70", "220", "IN: " + str(insideTemperature) + "* F [" + str(insideHumidity) + " %]"])
+        
+        subprocess.call(["./digole", "setColor", "250"])
+        subprocess.call(["./digole", "printxy_abs", "70", "230", "IN: " + str(insideTemperature) + "* F [" + str(insideHumidity) + " %]"])
 
         # wait 5 minutes
         time.sleep(300)
 
     except (Exception):
-        # Network or other issue, wait 5 seconds
-        time.sleep(5)
+        # Network or other issue, wait 5 minutes
+        time.sleep(300)
