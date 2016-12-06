@@ -52,31 +52,31 @@ while True:
         apparentTemperatureMax = str(int(dailyConditions['apparentTemperatureMax']))
         
         # clear and setup display to show basic info
-        subprocess.call(["./digole", "clear"])
-        subprocess.call(["./digole", "setRot90"])
-        subprocess.call(["./digole", icon])
-        subprocess.call(["./digole", "setFont", "18"])
-        subprocess.call(["./digole", "setColor", "255"])
-        subprocess.call(["./digole", "printxy_abs", "10", "178", summary])
-        subprocess.call(["./digole", "setFont", "51"])
-        subprocess.call(["./digole", "printxy_abs", "150", "40", date.strftime('%a, %b %d')])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "clear"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "setRot90"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", icon])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "setFont", "18"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "setColor", "255"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "printxy_abs", "10", "178", summary])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "setFont", "51"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "printxy_abs", "150", "40", date.strftime('%a, %b %d')])
         
         # print the min daily temp in the evening and night, print the day max temp in the morning and daytime
         if dt.datetime.now().hour > 16 or dt.datetime.now().hour < 6:
-            subprocess.call(["./digole", "setColor", "223"])
-            subprocess.call(["./digole", "printxy_abs", "150", "130", "LOW\n" + apparentTemperatureMin + '*F'])
+            subprocess.call(["/home/pi/EnvironmentClock/digole", "setColor", "223"])
+            subprocess.call(["/home/pi/EnvironmentClock/digole", "printxy_abs", "150", "130", "LOW\n" + apparentTemperatureMin + '*F'])
         else:
-            subprocess.call(["./digole", "setColor", "250"])
-            subprocess.call(["./digole", "printxy_abs", "150", "130", "HIGH\n" + apparentTemperatureMax + '*F'])
+            subprocess.call(["/home/pi/EnvironmentClock/digole", "setColor", "250"])
+            subprocess.call(["/home/pi/EnvironmentClock/digole", "printxy_abs", "150", "130", "HIGH\n" + apparentTemperatureMax + '*F'])
         
         # show indoor / outdoor temp
-        subprocess.call(["./digole", "setFont", "120"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "setFont", "120"])
         
-        subprocess.call(["./digole", "setColor", "255"])
-        subprocess.call(["./digole", "printxy_abs", "150", "85", apparentTemperature + "*F [" + humidity + "%]"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "setColor", "255"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "printxy_abs", "150", "85", apparentTemperature + "*F [" + humidity + "%]"])
         
-        subprocess.call(["./digole", "setColor", "250"])
-        subprocess.call(["./digole", "printxy_abs", "70", "230", "IN: " + str(insideTemperature) + "* F [" + str(insideHumidity) + " %]"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "setColor", "250"])
+        subprocess.call(["/home/pi/EnvironmentClock/digole", "printxy_abs", "70", "230", "IN: " + str(insideTemperature) + "* F [" + str(insideHumidity) + " %]"])
 
         # wait 5 minutes
         time.sleep(300)
