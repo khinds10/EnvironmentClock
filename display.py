@@ -66,7 +66,7 @@ while True:
             subprocess.call(["/home/pi/EnvironmentClock/digole", "setColor", "223"])
             subprocess.call(["/home/pi/EnvironmentClock/digole", "printxy_abs", "150", "130", "LOW\n" + apparentTemperatureMin + '*F'])
         else:
-            subprocess.call(["/home/pi/EnvironmentClock/digole", "setColor", "250"])
+            subprocess.call(["/home/pi/EnvironmentClock/digole", "setColor", "222"])
             subprocess.call(["/home/pi/EnvironmentClock/digole", "printxy_abs", "150", "130", "HIGH\n" + apparentTemperatureMax + '*F'])
         
         # show indoor / outdoor temp
