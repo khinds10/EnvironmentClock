@@ -31,7 +31,7 @@ avgHumidity = avgHumidity / readingCount
 insideHumidity = int(avgHumidity)
 
 # get current forecast from location
-weatherInfo = json.loads(subprocess.check_output(['curl', settings.weatherAPIURL]))
+weatherInfo = json.loads(subprocess.check_output(['curl', settings.weatherAPIURL + settings.weatherAPIKey + '/' + str(settings.latitude) + ',' + str(settings.longitude) + '?lang=en']))
 currentConditions = weatherInfo['currently']
 icon = str(currentConditions['icon'])
 apparentTemperature = str(int(currentConditions['apparentTemperature']))
