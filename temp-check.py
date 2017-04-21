@@ -52,6 +52,6 @@ apparentTemperatureMin = str(int(dailyConditions['apparentTemperatureMin']))
 apparentTemperatureMax = str(int(dailyConditions['apparentTemperatureMax']))
 
 # post to datahub
-r = requests.post("http://" + settings.deviceLoggerAPI + "/api/log/", data={'device': 'weather-clock-white', 'value1': str(insideTemperature), 'value2': str(insideHumidity) , 'value3': str(currentConditions['apparentTemperature']), 'value4': str(int(currentConditions['humidity'] * 100)), 'value5': str(summary)})
+r = requests.post("http://" + settings.deviceLoggerAPI + "/api/log/", data={'device': 'weather-clock', 'value1': str(insideTemperature), 'value2': str(insideHumidity) , 'value3': str(currentConditions['apparentTemperature']), 'value4': str(int(currentConditions['humidity'] * 100)), 'value5': str(summary)})
 print(r.status_code, r.reason)
 print(r.text)
