@@ -1,6 +1,6 @@
-#EnvironmentClock - RPi Time/Weather Clock
+# EnvironmentClock - RPi Time/Weather Clock
 
-####Flashing RaspberriPi Hard Disk / Install Required Software (Using Ubuntu Linux)
+#### Flashing RaspberriPi Hard Disk / Install Required Software (Using Ubuntu Linux)
 
 ![EnvironmentClock](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/front.jpg "EnvironmentClock")
 
@@ -170,7 +170,7 @@ Run the test
 
 > You should see a metric reading of Temp and Humidity displayed on the command line.
 
-##Supplies Needed
+## Supplies Needed
 
 **1.2 inch LED Display**
 
@@ -188,7 +188,7 @@ Run the test
 
 ![Pi Zero](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/pizero.jpg "Pi Zero")
 
-##Build and wire the device
+## Build and wire the device
 
 **1) Prepare the Digole Display for i2C**
 
@@ -256,7 +256,7 @@ Using a 3D printer print the enclosure files included in the 'enclosure/' folder
 ![Attach Back Panel](https://raw.githubusercontent.com/khinds10/EnvironmentClock/master/images/back.jpg "Attach Back Panel")
 
 
-##Setup Startup Scripts
+## Setup Startup Scripts
 
 >$ `crontab -e`
 
@@ -270,8 +270,15 @@ Verify the display starts working on reboot
 
 >$ `sudo reboot`
 
+## OPTIONAL: Temp Logger to API script each 10 minutes
 
-##OPTIONAL: Creating your own weather images to render on the display
+>$ `crontab -e`
+
+Add the following lines:
+
+`*/10 * * * * python /home/pi/EnvironmentClock/temp-check.py`
+
+## OPTIONAL: Creating your own weather images to render on the display
 
 Upload your own 128x128 file to the following URL:
 
