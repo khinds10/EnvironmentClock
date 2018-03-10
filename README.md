@@ -94,7 +94,7 @@ Add the following lines to have your raspberrypi automatically connect to your h
 >
 >$ `sudo apt-get upgrade`
 >
->$ `sudo apt-get install vim git python-smbus i2c-tools python-imaging python-smbus build-essential python-dev rpi.gpio python3 python3-pip libi2c-dev`
+>$ `sudo apt-get install vim git python-requests python-smbus i2c-tools python-imaging python-smbus build-essential python-dev rpi.gpio python3 python3-pip libi2c-dev`
 
 **Update local timezone settings**
 
