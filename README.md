@@ -260,14 +260,14 @@ Using a 3D printer print the enclosure files included in the 'enclosure/' folder
 
 Find the file `settings.py` and adjust to your current settings
 
-> # forecast.io API key for local weather information
+> \# forecast.io API key for local weather information
 > weatherAPIURL = 'https://api.forecast.io/forecast/'
 > weatherAPIKey = 'YOUR API KEY FOR FORECAST.IO'
 > 
-> # optional for running the remote temp/humidity logger
+> \# optional for running the remote temp/humidity logger
 > deviceLoggerAPI = 'mydevicelogger.com'
 
-> # search google to get the Latitude/Longitude for your home location
+> \# search google to get the Latitude/Longitude for your home location
 > latitude = 41.4552578
 > longitude = -72.1665444
 
