@@ -11,7 +11,7 @@ import requests
 
 # Raspberry Pi with DHT sensor - connected to GPIO16 / Pin 36
 sensor = sensor = Adafruit_DHT.DHT11
-pin = 16
+pin = 18
 
 # get current date and time
 date=dt.datetime.now()
@@ -30,28 +30,28 @@ insideTemperature = int(avgTemperature * 9/5 + 32)
 avgHumidity = avgHumidity / readingCount
 insideHumidity = int(avgHumidity)
 
-# get current forecast from location
-weatherInfo = json.loads(subprocess.check_output(['curl', settings.weatherAPIURL + settings.weatherAPIKey + '/' + str(settings.latitude) + ',' + str(settings.longitude) + '?lang=en']))
-currentConditions = weatherInfo['currently']
-icon = str(currentConditions['icon'])
-apparentTemperature = str(int(currentConditions['apparentTemperature']))
-humidity = str(int(currentConditions['humidity'] * 100))
-windSpeed = str(int(currentConditions['windSpeed']))
-cloudCover = str(int(currentConditions['cloudCover'] * 100))
-precipProbability = str(int(currentConditions['precipProbability'] * 100))
+# DHT11 adjust for this unit
+insideTemperature = int(insideTemperature) - 4
+insideHumidity = int(avgHumidity)
 
-# minutely conditions, limit the characters to 30 in the summary
-minutelyConditions = weatherInfo['minutely']
-summary = str(minutelyConditions['summary'])
+# get current forecast from location
+weatherInfo = json.loads(subprocess.check_output(['curl', settings.weatherAPIURL]))
+currentConditions = weatherInfo['current']
+apparentTemperature = str(int(currentConditions['feels_like']))
+humidity = str(int(currentConditions['humidity']))
+windSpeed = str(int(currentConditions['wind_speed']))
+cloudCover = str(int(currentConditions['clouds']))
+summary = str(currentConditions['weather'][0]['description'])
 summary = (summary[:27] + '...') if len(summary) > 29 else summary
+summary = summary.title()
 
 # conditions for the day
 dailyConditions = weatherInfo['daily']
-dailyConditions = dailyConditions['data'][0]
-apparentTemperatureMin = str(int(dailyConditions['apparentTemperatureMin']))
-apparentTemperatureMax = str(int(dailyConditions['apparentTemperatureMax']))
+dailyConditions = dailyConditions[0]
+apparentTemperatureMin = str(int(dailyConditions['temp']['min']))
+apparentTemperatureMax = str(int(dailyConditions['temp']['max']))
 
 # post to datahub
-r = requests.post("http://" + settings.deviceLoggerAPI + "/api/log/", data={'device': 'weather-clock', 'value1': str(insideTemperature), 'value2': str(insideHumidity) , 'value3': str(currentConditions['apparentTemperature']), 'value4': str(int(currentConditions['humidity'] * 100)), 'value5': str(summary)})
+r = requests.post("http://" + settings.deviceLoggerAPI + "/api/log/", data={'device': 'weather-clock-red', 'value1': str(insideTemperature), 'value2': str(insideHumidity) , 'value3': str(apparentTemperature), 'value4': str(humidity), 'value5': str(summary)})
 print(r.status_code, r.reason)
 print(r.text)

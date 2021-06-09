@@ -8,7 +8,48 @@ import Adafruit_DHT
 
 # Raspberry Pi with DHT sensor - connected to GPIO16 / Pin 36
 sensor = sensor = Adafruit_DHT.DHT11
-pin = 16
+pin = 18
+
+def getIcon(openweatherCode):
+    """get digole icon name from openweather map icon code"""
+    if openweatherCode == '01d':
+        return "clear-day"
+    elif openweatherCode == '01n':
+        return "clear-night"
+    elif openweatherCode == '03d':
+        return "cloudy"
+    elif openweatherCode == '03n':
+        return "cloudy"
+    elif openweatherCode == '02d':
+        return "partly-cloudy-day"
+    elif openweatherCode == '04d':
+        return "partly-cloudy-day"
+    elif openweatherCode == '02n':
+        return "partly-cloudy-night"
+    elif openweatherCode == '04n':
+        return "partly-cloudy-night"
+    elif openweatherCode == '50d':
+        return "fog"
+    elif openweatherCode == '50n':
+        return "fog"
+    elif openweatherCode == '09d':
+        return "rain"
+    elif openweatherCode == '09n':
+        return "rain"
+    elif openweatherCode == '10d':
+        return "rain"
+    elif openweatherCode == '10n':
+        return "rain"
+    elif openweatherCode == '11d':
+        return "rain"
+    elif openweatherCode == '11n':
+        return "rain"
+    elif openweatherCode == '13d':
+        return "snow"
+    elif openweatherCode == '13n':
+        return "snow" 
+    else:
+        return "cloudy"
 
 # begin the loop to get the current weather for display
 while True:
@@ -29,27 +70,28 @@ while True:
         insideTemperature = int(avgTemperature * 9/5 + 32)
         avgHumidity = avgHumidity / readingCount
         insideHumidity = int(avgHumidity)
-        
+ 
+	    # DHT11 adjust for this unit
+        insideTemperature = int(insideTemperature) - 4
+        insideHumidity = int(avgHumidity)
+       
         # get current forecast from location
-        weatherInfo = json.loads(subprocess.check_output(['curl', settings.weatherAPIURL + settings.weatherAPIKey + '/' + str(settings.latitude) + ',' + str(settings.longitude) + '?lang=en']))
-        currentConditions = weatherInfo['currently']
-        icon = str(currentConditions['icon'])
-        apparentTemperature = str(int(currentConditions['apparentTemperature']))
-        humidity = str(int(currentConditions['humidity'] * 100))
-        windSpeed = str(int(currentConditions['windSpeed']))
-        cloudCover = str(int(currentConditions['cloudCover'] * 100))
-        precipProbability = str(int(currentConditions['precipProbability'] * 100))
-
-        # minutely conditions, limit the characters to 30 in the summary
-        minutelyConditions = weatherInfo['minutely']
-        summary = str(minutelyConditions['summary'])
+        weatherInfo = json.loads(subprocess.check_output(['curl', settings.weatherAPIURL]))
+        currentConditions = weatherInfo['current']
+        apparentTemperature = str(int(currentConditions['feels_like']))
+        humidity = str(int(currentConditions['humidity']))
+        windSpeed = str(int(currentConditions['wind_speed']))
+        cloudCover = str(int(currentConditions['clouds']))
+        icon = getIcon(currentConditions['weather'][0]['icon'])
+        summary = str(currentConditions['weather'][0]['description'])
         summary = (summary[:27] + '...') if len(summary) > 29 else summary
+        summary = summary.title()
 
         # conditions for the day
         dailyConditions = weatherInfo['daily']
-        dailyConditions = dailyConditions['data'][0]
-        apparentTemperatureMin = str(int(dailyConditions['apparentTemperatureMin']))
-        apparentTemperatureMax = str(int(dailyConditions['apparentTemperatureMax']))
+        dailyConditions = dailyConditions[0]
+        apparentTemperatureMin = str(int(dailyConditions['temp']['min']))
+        apparentTemperatureMax = str(int(dailyConditions['temp']['max']))
         
         # clear and setup display to show basic info
         subprocess.call(["/home/pi/EnvironmentClock/digole", "clear"])
